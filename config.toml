@@ -1,0 +1,15 @@
+baseURL = "https://pdutta.net/blog/"
+languageCode = "en-gb"
+title = "Prasenjeet Dutta's Blog"
+theme = "Sam"
+
+PygmentsCodeFences = true
+PygmentsStyle = "monokai"
+
+[[params.mainMenu]]
+    link = "/"
+    text = "Home"
+
+[[params.mainMenu]]
+    link = "/blog/posts"
+    text = "Articles"
