@@ -9,7 +9,8 @@ Often, while experimenting with Compute Engine on GCP, we need to set up a webse
 
 Ideally, we'd want to create a VM which starts "out of the box" with HTTPS
 pre-configured, as that's how we'll test most of our applications anyway.
-Spending time configuring HTTPS again and again doesn't sound like fun!
+Spending time configuring HTTPS again and again doesn't sound like fun, and
+also increases the chances of making a mistake.
 
 The following is a script to set up **nginx** and **Let's Encrypt** automatically. It can
 be used as a startup script. It's designed for Centos 7 but the script is easily adapted
@@ -38,9 +39,9 @@ sudo yum -y install epel-release certbot-nginx nginx
 sudo systemctl start nginx
 # you must have a domain name you own and have access to DNS management for that domain
 sudo sed -i 's/server_name  _/server_name  SUBDOMAIN.YOURDOMAIN.COM/g' /etc/nginx/nginx.conf
-sudo nginx -t
 sudo systemctl reload nginx
 sudo certbot register --email YOUR@EMAIL.COM --no-eff-email --agree-tos
+# For https://yourdomain.com use -d YOURDOMAIN.COM
 sudo certbot --nginx -d SUBDOMAIN.YOURDOMAIN.COM --redirect
 sudo systemctl enable nginx
 # the schedule below will run every month -- change as needed
